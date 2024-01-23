@@ -1,9 +1,9 @@
 from flask import Flask
-from app.data.mysql.create_db import CreateDatabase
+from app.data.mysql.create_db import DatabaseService
 from config import SECRET_KEY
 
 # creating databases and tables
-CreateDatabase()
+DatabaseService()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
