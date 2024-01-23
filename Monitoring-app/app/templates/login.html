@@ -5,10 +5,13 @@
   <title>Monitoring APP</title>
   <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap'>
   <link rel="stylesheet" href="../static/styles/login.css">
-  <img  src="..\static\images\user.png"/>
 </head>
 <body>
+
   <div class="screen-1">
+    <img src="..\static\images\user.png" class="logo" width="200" height="200" >
+       
+      </img>
     <div class="email">
       <label for="email">Email Address</label>
       <div class="sec-2">
@@ -25,7 +28,6 @@
       </div>
     </div>
     <button class="login">Login </button>
-    <div class="footer"><span>Signup</span><span>Forgot Password?</span></div>
     {% if error_message %}
     <div class="erreur-message">
         {{ error_message }}

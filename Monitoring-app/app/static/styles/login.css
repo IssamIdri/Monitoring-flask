@@ -76,7 +76,12 @@
     border-radius: 30px;
     font-weight: 600;
   }
-  
+  .logo{
+    width: 100px; /* Set the width as needed */
+    height: 100px; /* Set the height as needed */
+    display: block;
+    margin: 0 auto;
+  }
   .screen-1 .footer {
     display: flex;
     font-size: 0.7em;
