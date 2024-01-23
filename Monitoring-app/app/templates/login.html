@@ -12,11 +12,11 @@
     <img src="..\static\images\user.png" class="logo" width="200" height="200" >
        
       </img>
-    <div class="email">
-      <label for="email">Email Address</label>
+    <div class="username">
+      <label for="username">Username</label>
       <div class="sec-2">
-        <ion-icon name="mail-outline"></ion-icon>
-        <input type="email" name="email" placeholder="Username@gmail.com"/>
+        <ion-icon name="username-outline"></ion-icon>
+        <input type="text" name="username" placeholder="Username"/>
       </div>
     </div>
     <div class="password">
@@ -28,6 +28,7 @@
       </div>
     </div>
     <button class="login">Login </button>
+    
     {% if error_message %}
     <div class="erreur-message">
         {{ error_message }}

@@ -9,6 +9,7 @@ class Connection:
                 host="localhost",
                 user="root",
                 password="",
+                charset="utf8",
                 database=database_name
             )
         except Exception as err:
