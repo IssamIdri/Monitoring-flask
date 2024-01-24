@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Titre par défaut{% endblock %}</title>
+    <link rel="stylesheet" href="../static/styles/header.css">
+</head>
+
+<body>
+    <div class="bare-container">
+        <div class="bare">
+            <div class="logo">
+                <div>
+                    <img src="../static/imgs/icons8-monitoring-chloe-96.png" alt="" srcset="">
+                </div>
+                <div>Monitoring</div>
+            </div>
+            <a href="/log_out" class="out">
+                <div>
+                    <img src="../static/svgs/power-button-svgrepo-com.svg" alt="" srcset="">
+                </div>
+                <div>Log Out</div>
+            </a>
+        </div>
+    </div>
+    {% block content %}{% endblock %}
+</body>
+
+</html>

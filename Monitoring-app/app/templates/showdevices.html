@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/styles/show_device.css">
+</head>
+
+<body>
+    {% extends 'header.html' %}
+    {% block title %}Monitoring{% endblock %}
+
+    {% block content %}
+    <!-- title -->
+    <div class="title-container">
+        <div class="title">
+            <div>
+                <img src="../static/imgs/icons8-plusieurs-équipements-96.png" alt="">
+            </div>
+            <div>Show Diveces</div>
+        </div>
+    </div>
+
+    <!-- container device -->
+    <div class="container_show_devices">
+
+        <!-- Header -->
+        <div class="container-dev header">
+            <div>ID</div>
+            <div>TYPE</div>
+            <div>DEVICE NAME</div>
+            <div>IP ADDRESS</div>
+            <div>MAC ADDRESS</div>
+            <div>UPDATE</div>
+            <div>DELETE</div>
+            <div>STATISTIC</div>
+        </div>
+
+        <!-- lines -->
+        <div class="lines">
+            {% for item in devices_data %}
+            <div class="container-dev line">
+                <div>{{ item[0] }}</div>
+                <div>{{ item[4] }}</div>
+                <div>{{ item[1] }}</div>
+                <div>{{ item[2] }}</div>
+                <div>{{ item[3] }}</div>
+                <div><a href={{"/show_update_device/" ~ item[0]|string }}>
+                        <img src="../static/svgs/update-arrows-svgrepo-com.svg" alt="" srcset="">
+                    </a></div>
+                <div><a href={{"/show_delete_device/" ~ item[0]|string }}>
+                        <img src="../static/svgs/delete-fill-svgrepo-com.svg" alt="" srcset="">
+                    </a></div>
+                <div><a href={{"/show_graphe_device/" ~ item[0]|string }}>
+                        <img src="../static/svgs/graph-svgrepo-com(1).svg" alt="" srcset="">
+                    </a></div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Button add -->
+        <div class="container_add">
+            <div>
+                <a href="/add_device">
+                    <img src="../static/svgs/add-circle-solid-svgrepo-com.svg" alt="" srcset="">
+                </a>
+            </div>
+        </div>
+
+    </div>
+    {% endblock %}
+
+</body>
+
+</html>

@@ -23,7 +23,7 @@ def user_authentication() -> str:
             session['user_id'] = user_data['username']
 
             # Set cookie for access time
-            response = make_response(redirect('/show_devices'))
+            response = make_response(redirect('/showdevices'))
             response.set_cookie('access_time', str(datetime.now()))
 
             return response
