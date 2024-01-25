@@ -5,7 +5,7 @@ from app import app
 
 
 @app.route("/adddevice", methods=["GET", "POST"])
-def add_device() :
+def adddevice() :
     if request.method == "GET" :
         return render_template("adddevice.html")
     
