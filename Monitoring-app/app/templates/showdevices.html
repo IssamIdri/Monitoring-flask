@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/styles/show_device.css">
+    <title>Device Monitoring</title>
+    <link rel="stylesheet" href="../static/styles/showdevices.css">
 </head>
 
 <body>
@@ -13,17 +13,15 @@
     {% block title %}Monitoring{% endblock %}
 
     {% block content %}
-    <!-- title -->
+    <!-- Title Container -->
     <div class="title-container">
         <div class="title">
-            <div>
-                <img src="../static/imgs/icons8-plusieurs-équipements-96.png" alt="">
-            </div>
-            <div>Show Diveces</div>
+            <div>📊</div>
+            <div>Show Devices</div>
         </div>
     </div>
 
-    <!-- container device -->
+    <!-- Container for Device Information -->
     <div class="container_show_devices">
 
         <!-- Header -->
@@ -38,7 +36,7 @@
             <div>STATISTIC</div>
         </div>
 
-        <!-- lines -->
+        <!-- Device Lines -->
         <div class="lines">
             {% for item in devices_data %}
             <div class="container-dev line">
@@ -47,25 +45,17 @@
                 <div>{{ item[1] }}</div>
                 <div>{{ item[2] }}</div>
                 <div>{{ item[3] }}</div>
-                <div><a href={{"/show_update_device/" ~ item[0]|string }}>
-                        <img src="../static/svgs/update-arrows-svgrepo-com.svg" alt="" srcset="">
-                    </a></div>
-                <div><a href={{"/show_delete_device/" ~ item[0]|string }}>
-                        <img src="../static/svgs/delete-fill-svgrepo-com.svg" alt="" srcset="">
-                    </a></div>
-                <div><a href={{"/show_graphe_device/" ~ item[0]|string }}>
-                        <img src="../static/svgs/graph-svgrepo-com(1).svg" alt="" srcset="">
-                    </a></div>
+                <div><a href={{"/show_update_device/" ~ item[0]|string }}>Update</a></div>
+                <div><a href={{"/show_delete_device/" ~ item[0]|string }}>Delete</a></div>
+                <div><a href={{"/show_graphe_device/" ~ item[0]|string }}>Stats</a></div>
             </div>
             {% endfor %}
         </div>
 
-        <!-- Button add -->
+        <!-- Button to Add Device -->
         <div class="container_add">
             <div>
-                <a href="/add_device">
-                    <img src="../static/svgs/add-circle-solid-svgrepo-com.svg" alt="" srcset="">
-                </a>
+                <a href="/add_device">Add Device</a>
             </div>
         </div>
 
