@@ -51,13 +51,13 @@ body {
 /* Form Input Styles */
 .user-box {
     position: relative;
-    margin-bottom: 25px;
+    margin-bottom: 15px; /* Reduced margin for a more compact form */
 }
 
 .user-box input {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
+    padding: 8px; /* Reduced padding for a more compact form */
+    font-size: 14px; /* Slightly smaller font size */
     color: #333;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -73,7 +73,7 @@ body {
     position: absolute;
     top: 10px;
     left: 10px;
-    font-size: 16px;
+    font-size: 14px; /* Slightly smaller font size */
     color: #888;
     transition: transform 0.3s, font-size 0.3s, color 0.3s;
 }
@@ -82,7 +82,7 @@ body {
 .user-box input:valid ~ label {
     top: -15px;
     left: 0;
-    font-size: 12px;
+    font-size: 12px; /* Slightly smaller font size */
     color: #3498db;
 }
 
@@ -106,7 +106,8 @@ body {
 
 .add {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 8px 15px; /* Adjusted padding for a more compact button */
+    font-size: 14px; /* Slightly smaller font size */
     background-color: #3498db;
     color: #fff;
     border: none;
