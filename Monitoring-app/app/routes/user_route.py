@@ -19,8 +19,9 @@ def user_authentication() -> str:
         user_data = db_service.get_user_by_username_password(username, password)
 
         if user_data:
+            print(user_data)
             # Store user_id in session
-            session['user_id'] = user_data['username']
+            session['user_id'] = user_data[1]
 
             # Set cookie for access time
             response = make_response(redirect('/showdevices'))

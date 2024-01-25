@@ -12,28 +12,31 @@
     <img src="..\static\images\user.png" class="logo" width="200" height="200" >
        
       </img>
-    <div class="username">
-      <label for="username">Username</label>
-      <div class="sec-2">
-        <ion-icon name="username-outline"></ion-icon>
-        <input type="text" name="username" placeholder="Username"/>
+    <form action="/authentication" method="post">
+      <div class="username">
+        <label for="username">Username</label>
+        <div class="sec-2">
+          <ion-icon name="username-outline"></ion-icon>
+          <input type="text" name="username" placeholder="Username"/>
+        </div>
       </div>
-    </div>
-    <div class="password">
-      <label for="password">Password</label>
-      <div class="sec-2">
-        <ion-icon name="lock-closed-outline"></ion-icon>
-        <input class="pas" type="password" name="password" placeholder="············"/>
-        <ion-icon class="show-hide" name="eye-outline"></ion-icon>
+      <div class="password">
+        <label for="password">Password</label>
+        <div class="sec-2">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <input class="pas" type="password" name="password" placeholder="············"/>
+          <ion-icon class="show-hide" name="eye-outline"></ion-icon>
+        </div>
       </div>
+      <button class="login">Login </button>
+      
+      {% if error_message %}
+      <div class="erreur-message">
+          {{ error_message }}
+      </div>
+      {% endif %}
     </div>
-    <button class="login">Login </button>
+    </form>
     
-    {% if error_message %}
-    <div class="erreur-message">
-        {{ error_message }}
-    </div>
-    {% endif %}
-  </div>
 </body>
 </html>
