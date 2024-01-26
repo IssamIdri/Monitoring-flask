@@ -13,3 +13,5 @@ from app.routes import user_route
 from app.routes import showdevices
 from app.routes.adddevice import adddevice
 from app.routes.snmp import snmp_page
+from app.routes.updatedevice import update_device
+from app.routes.deletedevice import delete_device

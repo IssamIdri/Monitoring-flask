@@ -19,7 +19,12 @@ class DeviceInforamtionsRepository :
         cursor.close()
         connection.close()
         return result
-
+    def delete_device_inforamtions_by_device_id(self, device_id : str) -> None:
+            connection = Connection("monitoring").connection
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM device_informations WHERE device_id LIKE %s",(device_id,))
+            connection.commit()
+            cursor.close()
 
 
 if __name__ == "__main__" :

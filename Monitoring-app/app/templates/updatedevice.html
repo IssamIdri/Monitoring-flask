@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/styles/updatedevice.css">
+</head>
+
+<body>
+    {% extends 'header.html' %}
+    {% block title %}Monitoring{% endblock %}
+
+    {% block content %}
+    <!-- title -->
+    <div class="title-container">
+        <div class="title">
+            <div>
+                <img src="../static/images/update.png" alt="">
+            </div>
+            <div>Update Devices</div>
+        </div>
+    </div>
+    <!-- title -->
+    
+
+    <div class="container-add-device">
+        <div class="login-box">
+            <form action="/updatedevice" method="post">
+
+                <input type="hidden" id="device_name" name="device_id" value={{device_info[0]|string}} required><br>
+
+                <div class="user-box">
+                    <input type="text" name="device_name" required="" value={{device_info[1]}}>
+                    <label>Device Name</label>
+                </div>
+
+                <div class="user-box">
+                    <input type="text" name="type" required="" value={{device_info[4]}}>
+                    <label>Device Type</label>
+                </div>
+
+                <div class="user-box">
+                    <input type="text" name="device_ip" required="" value={{device_info[2]}}>
+                    <label>Device IP Address</label>
+                </div>
+
+                <div class="user-box">
+                    <input type="text" name="device_mac_address" required="" value={{device_info[3]}}>
+                    <label>Device MAC Address</label>
+                </div>
+
+                <div class="footer">
+                    <a href="/show_devices">
+                        <div>
+                            <img src="../static/svgs/back-svgrepo-com(1).svg" alt="" srcset="">
+                        </div>
+                    </a>
+                    <button class="submt-butt">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% endblock %}
+</body>
+
+</html>

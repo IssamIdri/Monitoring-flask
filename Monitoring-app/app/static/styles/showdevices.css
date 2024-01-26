@@ -50,9 +50,11 @@ body {
     padding: 10px;
     font-weight: bold;
     text-align: center;
-    background-color: #1a1a1a;
+    background-color: green;
     color: #fff;
 }
+
+
 
 .container-dev > div {
     padding: 10px;
@@ -79,7 +81,20 @@ body {
     text-decoration: none;
     color: #3498db;
 }
+.line img {
+    height: 40px;
+    width: 40px;
+  }
+  /* button */
+  .container_add {
+    display: flex;
+    justify-content: center;
+  }
+  .container_add img {
+    height: 60px;
+    width: 60px;
 
+  }
 .container_add {
     text-align: center;
     padding: 20px;
@@ -97,3 +112,4 @@ body {
 .container_add a:hover {
     background-color: #27ae60;
 }
+

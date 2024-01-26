@@ -9,6 +9,9 @@ class DeviceInformationsService :
 
     def select_device_by_id_device(self, device_id : str) -> list:
         return self.dev_info_repo.get_device_inforamtions_by_device_id(device_id)
+    
+    def remove_device_by_id_device(self, device_id : str) -> None:
+        self.dev_info_repo.delete_device_inforamtions_by_device_id(device_id) 
 
 if __name__ == "__main__" :
     pass
