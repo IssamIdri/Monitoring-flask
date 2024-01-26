@@ -50,7 +50,7 @@ body {
     padding: 10px;
     font-weight: bold;
     text-align: center;
-    background-color: green;
+    background-color: burlywood;
     color: #fff;
 }
 
@@ -67,6 +67,7 @@ body {
 .lines {
     max-height: 300px;
     overflow-y: auto;
+    
 }
 
 .line {
