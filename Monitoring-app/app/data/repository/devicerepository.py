@@ -1,7 +1,7 @@
 from app.data.mysql.connection import Connection
 
 class DeviceRepository :
-    def create_device(self, device_name : str, device_ip: str, device_mac_address: str, type : str) -> None:
+    def create_device(self, device_name: str, device_ip: str, device_mac_address: str, type: str) -> None:
         try :
             connection = Connection("monitoring").connection
             cursor = connection.cursor()

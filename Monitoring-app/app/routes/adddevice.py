@@ -14,7 +14,7 @@ def adddevice() :
         device_name : str = request.form.get("device_name")
         device_ip : str = request.form.get("device_ip")
         device_mac_address : str = request.form.get("device_mac_address")
- 
+        type : str = request.form.get("type")
 
-        device_ser.add_device(device_name, device_ip, device_mac_address)
+        device_ser.add_device(device_name, device_ip, device_mac_address, type)
         return redirect('/showdevices')

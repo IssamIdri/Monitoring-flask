@@ -4,7 +4,7 @@ class DeviceService :
     def __init__(self) -> None:
         self.device_repo = DeviceRepository()
 
-    def add_device(self, device_name : str, device_ip: str, device_mac_address: str, type : str) -> None:
+    def add_device(self, device_name: str, device_ip: str, device_mac_address: str, type: str) -> None:
         try :
             self.device_repo.create_device(device_name, device_ip, device_mac_address, type)
         except Exception as err: 
