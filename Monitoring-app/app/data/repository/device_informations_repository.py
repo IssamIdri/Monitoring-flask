@@ -19,6 +19,7 @@ class DeviceInforamtionsRepository :
         cursor.close()
         connection.close()
         return result
+    
     def delete_device_inforamtions_by_device_id(self, device_id : str) -> None:
             connection = Connection("monitoring").connection
             cursor = connection.cursor()
