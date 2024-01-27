@@ -22,8 +22,8 @@ class LoadDataBySnmpInfo(threading.Thread) :
                     data_snmp["ram"], data_snmp["cpu"],data_snmp["used_disk"],data_snmp["disk"],str(device[0])
                 )
            
-                time.sleep(5)
-            time.sleep(secs=5)
+                time.sleep(30)
+            time.sleep(secs=30)
 
 
 if __name__ == "__main__" :
