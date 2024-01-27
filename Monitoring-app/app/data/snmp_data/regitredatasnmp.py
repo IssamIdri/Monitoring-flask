@@ -23,7 +23,7 @@ class LoadDataBySnmpInfo(threading.Thread) :
                 )
            
                 time.sleep(30)
-            time.sleep(secs=30)
+            time.sleep(30)
 
 
 if __name__ == "__main__" :
