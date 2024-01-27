@@ -50,7 +50,8 @@ class DatabaseService:
                 cpu_usage FLOAT NOT NULL,
                 disk_space_used FLOAT NOT NULL,
                 device_id INT,
-                FOREIGN KEY (device_id) REFERENCES devices(id)
+                FOREIGN KEY (device_id) REFERENCES devices(id),
+                disk_size float
             )
         ''')
 

@@ -2,7 +2,7 @@ from flask import request, render_template, redirect
 
 from app.data.services.deviceservices import DeviceService
 from app import app
-from app.data.snmp_data.get_information_snmp import snmp_get 
+from app.data.snmp_data.getinformationsnmp import SnmpData
 
 
 @app.route('/snmp', methods=['GET', 'POST'])
