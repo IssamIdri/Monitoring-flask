@@ -24,7 +24,7 @@ def user_authentication() -> str:
             session['user_id'] = user_data[1]
 
             # Set cookie for access time
-            response = make_response(redirect('/showdevices'))
+            response = make_response(render_template('index.html'))
             response.set_cookie('access_time', str(datetime.now()))
 
             return response
@@ -38,3 +38,7 @@ def log_out() -> str:
     response = make_response(render_template("login.html"))
     response.delete_cookie('access_time')
     return response
+
+@app.route('/index')
+def index():
+    return render_template('index.html')

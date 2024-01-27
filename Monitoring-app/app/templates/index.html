@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte du Maroc</title>
+    <!-- Inclure la bibliothèque Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="../static/styles/index.css">
+</head>
+<body>
+    {% extends 'header.html' %}
+    {% block title %}Monitoring{% endblock %}
+
+    {% block content %}
+
+
+    <h1> Moroccan Map </h1>
+    <div id="map" style="height: 500px;"></div>
+
+    <script>
+        // Initialiser la carte centrée sur le Maroc
+        var mymap = L.map('map').setView([31.7917, -7.0926], 6);
+
+        // Ajouter une couche de tuiles (par exemple, OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(mymap);
+
+        // Vous pouvez ajouter des marqueurs, des formes ou d'autres éléments à la carte ici.
+    </script>
+    {% endblock %}
+</body>
+</html>
