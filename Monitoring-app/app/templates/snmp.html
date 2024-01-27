@@ -18,9 +18,19 @@
         <input type='number' id='port' name='port' value='161'><br><br>
         <input type='submit' value='Submit'>
     </form>
+    
     {% if snmp_data %}
         <h2>SNMP Data:</h2>
         <p>{{ snmp_data }}</p>
+        
+        {% if numeric_values %}
+            <h2>Numeric Values:</h2>
+            <ul>
+                {% for value in numeric_values %}
+                    <li>{{ value }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     {% endif %}
 </body>
 </html>

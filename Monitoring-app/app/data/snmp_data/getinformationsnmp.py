@@ -1,4 +1,5 @@
 from pysnmp.hlapi import *
+import pysnmp.hlapi.asyncore as snmp
 
 class SnmpData :
     @staticmethod
