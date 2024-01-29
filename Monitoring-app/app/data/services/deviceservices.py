@@ -10,6 +10,7 @@ class DeviceService :
         except Exception as err: 
             print(err)
     
+    
     def select_device_by_id(self, device_id : str) -> tuple:
         try :
             return self.device_repo.get_device_by_id(device_id)
@@ -33,7 +34,22 @@ class DeviceService :
         try :
             self.device_repo.update_device(device_id, device_name, device_ip, device_mac_address, type)
         except Exception as err: 
-            print(err)        
+            print(err)    
+            
+            '''IOTDEVICES'''    
 
+    def add_iotdevice(self, name: str, adresse_ip: str, adresse_mac: str, longitude: float, latitude: float) -> None:
+        try :
+            self.device_repo.create_iotdevice(name,adresse_ip,adresse_mac,longitude,latitude)
+        except Exception as err: 
+            print(err)
+    
+    def selectinfoiot(self):
+        try:
+            self.device_repo.getalliotdevices()
+        except Exception as err:
+            print(err)
+            
+            
 if __name__ == "__main__" :
     pass

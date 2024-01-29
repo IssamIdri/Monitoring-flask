@@ -4,7 +4,7 @@ from app.data.services.deviceservices import DeviceService
 from app import app
 from app.data.snmp_data.testsnmp import snmp_get
 
-import re
+
 '''
 @app.route('/snmp', methods=['GET', 'POST'])
 def snmp_page():
@@ -42,7 +42,6 @@ from app.data.services.device_information_sevice import DeviceInformationsServic
 from app.data.services.deviceservices import DeviceService
 
 
-app = Flask(__name__)
 
 # SNMP GET function
 def snmp_get(oid, target, community='public', port=161):

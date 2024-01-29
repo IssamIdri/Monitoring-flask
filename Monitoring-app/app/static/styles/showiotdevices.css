@@ -1,0 +1,88 @@
+/* Reset some default styles */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header styling */
+header {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Title container styling */
+.title-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title img {
+    margin-right: 10px;
+}
+
+/* Container show devices styling */
+.container_show_devices {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Container device header styling */
+.container-dev.header {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    font-weight: bold;
+    background-color: #2196F3;
+    color: #fff;
+    padding: 10px 0;
+}
+
+/* Container device line styling */
+.container-dev.line {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Container add styling */
+.container_add {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container_add a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2196F3;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.container_add a:hover {
+    background-color: #1565C0;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 600px) {
+    .container-dev.header, .container-dev.line {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
