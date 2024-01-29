@@ -1,3 +1,4 @@
+/* Variables */
 :root {
     --primary-color: #3498db;
     --background-color: #f4f4f4;
@@ -5,6 +6,7 @@
     --box-shadow-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Body Styles */
 body {
     font-family: "Arial", sans-serif;
     background-color: var(--background-color);
@@ -12,6 +14,7 @@ body {
     margin: 0;
 }
 
+/* Header Styles */
 header {
     background-color: var(--primary-color);
     color: #fff;
@@ -19,11 +22,13 @@ header {
     text-align: center;
 }
 
+/* Title Container Styles */
 .title-container {
     margin-top: 20px;
     text-align: center;
 }
 
+/* Title Styles */
 .title img {
     height: 60px;
     width: 60px;
@@ -36,6 +41,7 @@ header {
     color: var(--text-color);
 }
 
+/* Container for Graph and Info Styles */
 .container-graphe-info {
     display: flex;
     justify-content: space-around;
@@ -43,32 +49,49 @@ header {
     margin-top: 20px;
 }
 
-.container-image img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid var(--box-shadow-color);
-    border-radius: 8px;
-}
-
+/* Form Container (Login Box) Styles */
 .login-box {
-    background-color: #fff;
+    background-color: #f4f4f4;
     padding: 20px;
-    border: 1px solid var(--box-shadow-color);
     border-radius: 8px;
-    box-shadow: 0 0 15px var(--box-shadow-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
 }
 
+/* Individual Box Styles */
 .box {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
+/* Box Labels and Content Styles */
+.box > div:first-child {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.box > div:last-child {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Footer Styles */
 .footer {
+    text-align: center;
     margin-top: 20px;
 }
 
-.footer a img {
-    height: 30px;
-    width: 30px;
+/* Back Button Styles */
+.footer a {
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+}
+
+/* Optional Back Button Icon Styles */
+.footer img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
 }

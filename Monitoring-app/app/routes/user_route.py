@@ -39,6 +39,3 @@ def log_out() -> str:
     response.delete_cookie('access_time')
     return response
 
-@app.route('/index')
-def index():
-    return render_template('index.html')

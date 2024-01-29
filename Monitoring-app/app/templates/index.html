@@ -15,7 +15,6 @@
 
     {% block content %}
 
-
     <h1> Moroccan Map </h1>
     <div id="map" style="height: 500px;"></div>
 
@@ -28,7 +27,11 @@
             attribution: '© OpenStreetMap contributors'
         }).addTo(mymap);
 
-        // Vous pouvez ajouter des marqueurs, des formes ou d'autres éléments à la carte ici.
+        // Ajouter un marqueur à la position spécifiée
+        var marker = L.marker([31.7917, -7.0926]).addTo(mymap);
+
+        // Vous pouvez personnaliser le marqueur en ajoutant une pop-up
+        marker.bindPopup("<b>Emplacement du Marqueur</b>").openPopup();
     </script>
     {% endblock %}
 </body>
