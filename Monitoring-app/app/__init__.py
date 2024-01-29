@@ -20,4 +20,8 @@ from app.routes.index import index
 
 from app.routes.snmp import snmp_get
 from app.routes.snmp import show_graph
+<<<<<<< HEAD
 from app.routes.showiotdevices import show_iot_devices
+=======
+
+>>>>>>> d531b2caf83c87e8437f7707fd43cb9185ba04da
