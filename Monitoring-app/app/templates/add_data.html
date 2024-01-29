@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Data</title>
+</head>
+<body>
+    <h1>Add Data</h1>
+    <form method="POST" action="/add_data">
+        <label for="device_id">Device ID:</label>
+        <input type="text" id="device_id" name="device_id" required>
+        
+        <label for="target">SNMP Target:</label>
+        <input type="text" id="target" name="target" required>
+
+        <button type="submit">Add Data</button>
+    </form>
+</body>
+</html>

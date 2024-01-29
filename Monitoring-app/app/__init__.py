@@ -8,11 +8,16 @@ DatabaseService()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-from app.routes.snmp import snmp_page
+from app.routes.snmp import add_data
 from app.routes import user_route
 from app.routes import showdevices
 from app.routes.adddevice import adddevice
 from app.routes.updatedevice import update_device
 from app.routes.deletedevice import delete_device
 from app.routes.graphedevice import showgraphedevice
+<<<<<<< Updated upstream
 from app.routes.index import index
+=======
+from app.routes.snmp import snmp_get
+from app.routes.snmp import show_graph
+>>>>>>> Stashed changes
