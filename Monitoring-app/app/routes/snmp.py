@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from flask import request, render_template, redirect
 
 from app.data.services.deviceservices import DeviceService
@@ -29,9 +29,8 @@ def snmp_page():
         return render_template('snmp.html', snmp_data=None)
 '''
 
-=======
->>>>>>> d531b2caf83c87e8437f7707fd43cb9185ba04da
-from flask import Flask, render_template, request, redirect
+
+
 from pysnmp.hlapi import *
 import random
 from flask import render_template, redirect

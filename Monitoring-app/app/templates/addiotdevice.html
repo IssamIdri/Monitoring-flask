@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Insertion Form</title>
+    <link rel="stylesheet" href="../static/styles/adddevice.css">
+</head>
+
+<body>
+    {% extends 'header.html' %}
+    {% block title %}Monitoring - Flask{% endblock %}
+
+    {% block content %}
+    <!-- title -->
+    <div class="title-container">
+        <div class="title">
+            <div>
+                <img src="..\static\images\computer_pc.png" alt=""><br />
+            </div>
+            <div> Add IOT Devices : </div>
+        </div>
+    </div>
+
+    <div class="container-add-iot-device">
+        <div class="login-box">
+            <form action="/addiotdevice" method="post">
+
+                <div class="user-box">
+                    <input type="text" name="device_name" required="">
+                    <label>Name</label>
+                </div>
+
+                <div class="user-box">
+                    <input type="text" name="type" required="">
+                    <label>ADRESSE IP</label>
+                </div>
+
+                <div class="user-box">
+                    <input type="text" name="device_ip" required="">
+                    <label>ADRESSE MAC</label>
+                </div>
+
+                <div class="user-box">
+                    <input type="text" name="device_mac_address" required="">
+                    <label>LONGITUDE</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="device_mac_address" required="">
+                    <label>LATITUDE</label>
+                </div>
+
+                <div class="footer">
+                    <a href="/showiotdevices">
+                        <div>
+                            <img src="../static/svgs/back-svgrepo-com(1).svg" alt="" srcset="">
+                        </div>
+                    </a>
+                    <button class="add">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+
+</body>
+
+</html>

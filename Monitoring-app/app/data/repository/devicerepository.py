@@ -29,7 +29,7 @@ class DeviceRepository :
     def get_all_devices(self) -> list:
         connection = Connection("monitoring").connection
         cursor = connection.cursor()
-        cursor.execute('SELECT * FROM iotdevices')
+        cursor.execute('SELECT * FROM devices')
         result : list = cursor.fetchall()
         cursor.close()
         connection.close()
@@ -70,7 +70,7 @@ class DeviceRepository :
     def getiotdevicebyname(self,name : str) -> any:
         connection = Connection("monitoring").connection
         cursor = connection.cursor()
-        cursor.execute('SELECT * FROM devices WHERE id = %s', (name,))
+        cursor.execute('SELECT * FROM iotdevices WHERE name = %s', (name))
         result : any = cursor.fetchone()
         cursor.close()
         connection.close()

@@ -17,7 +17,7 @@
     <div class="title-container">
         <div class="title">
             <div>
-                <img src="../static/images/equipment.png" alt="">
+                <img src="../static/images/iot1.png" alt="">
             </div>
             <div>Show IOT Devices</div>
         </div>
@@ -41,40 +41,40 @@
 
         <!-- lines -->
         <div class="lines">
-            {% for item in devices_iotdata %}
-            <div class="container-dev line">
-                <div>{{ item[0] }}</div>
-                <div>{{ item[1] }}</div>
-                <div>{{ item[2] }}</div>
-                <div>{{ item[3] }}</div>
-                <div>{{ item[4] }}</div>
-                <div>{{ item[5] }}</div>
-                <div><a href={{"/showupdatedevice/" ~ item[0]|string }}>
-                        <img src="../static/svgs/update-icon-svgrepo-com.svg" alt="" srcset="">
-                    </a></div>
-                <div><a href={{"/showdeletedevice/" ~ item[0]|string }}>
-                        <img src="../static/svgs/delete-svgrepo-com.svg" alt="" srcset="">
-                    </a></div>
-                <div><a href={{"/graphedevice/" ~ item[0]|string }}>
-                        <img src="../static/svgs/graph-svgrepo-com(1).svg" alt="" srcset="">
-                    </a></div>
-            </div>
-            {% endfor %}
+            {% if devices_data %}
+                {% for item in devices_data %}
+                <div class="container-dev line">
+                    <div>{{ item[0] }}</div>
+                    <div>{{ item[1] }}</div>
+                    <div>{{ item[2] }}</div>
+                    <div>{{ item[3] }}</div>
+                    <div>{{ item[4] }}</div>
+                    <div>{{ item[5] }}</div>
+                    <div><a href={{"/showupdatedevice/" ~ item[0]|string }}>
+                            <img src="../static/svgs/update-icon-svgrepo-com.svg" alt="" srcset="">
+                        </a></div>
+                    <div><a href={{"/showdeletedevice/" ~ item[0]|string }}>
+                            <img src="../static/svgs/delete-svgrepo-com.svg" alt="" srcset="">
+                        </a></div>
+                    <div><a href={{"/graphedevice/" ~ item[0]|string }}>
+                            <img src="../static/svgs/graph-svgrepo-com(1).svg" alt="" srcset="">
+                        </a></div>
+                </div>
+                {% endfor %}
+            {% else %}
+            <p>No data available.</p>
+        {% endif %}
         </div>
 
         <!-- Button add -->
         <div class="container_add">
             <div>
-                <a href="/adddevice">
-                    Add Device
+                <a href="/addiotdevice">
+                    Add IOT Device
                 </a>
             </div>
         </div>
-        <div class="container_add">
-            <div>
-                <a href="/add_data">Add test</a>
-            </div>
-        </div>
+        
 
     </div>
     {% endblock %}

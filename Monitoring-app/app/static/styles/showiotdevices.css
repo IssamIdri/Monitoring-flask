@@ -1,27 +1,19 @@
 /* Reset some default styles */
-body, h1, h2, p, ul, li {
+body, h1, h2, h3, p, ul, li {
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: "Arial", sans-serif;
+    background-color: #f8f8f8;
+    color: azure;
 }
 
-/* Header styling */
-header {
-    background-color: #2196F3;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-}
-
-/* Title container styling */
+/* Title Container Styles */
 .title-container {
+    margin-top: 20px;
     text-align: center;
-    margin: 20px 0;
 }
 
 .title {
@@ -31,58 +23,94 @@ header {
 }
 
 .title img {
-    margin-right: 10px;
+    height: 60px;
+    width: 60px;
 }
 
-/* Container show devices styling */
+.title div {
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 10px;
+    color: #333;
+}
+
+/* Container for Device Information Styles */
 .container_show_devices {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(173, 173, 173, 0.3);
 }
 
-/* Container device header styling */
-.container-dev.header {
+.container-dev {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
+    padding: 10px;
     font-weight: bold;
-    background-color: #2196F3;
-    color: #fff;
-    padding: 10px 0;
+    text-align: center;
+    background-color: gainsboro;
+    color: black;
 }
 
-/* Container device line styling */
-.container-dev.line {
+
+
+.container-dev > div {
+    padding: 10px;
+}
+
+.header {
+    border-radius: 8px 8px 0 0;
+}
+
+.lines {
+    max-height: 300px;
+    overflow-y: auto;
+    
+}
+
+.line {
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    padding: 10px 0;
+    grid-template-columns: repeat(8, 1fr);
+    align-items: center;
+    padding: 10px;
     border-bottom: 1px solid #ddd;
 }
 
-/* Container add styling */
+.line a {
+    text-decoration: none;
+    color: #3498db;
+}
+.line img {
+    height: 40px;
+    width: 40px;
+  }
+  /* button */
+  .container_add {
+    display: flex;
+    justify-content: center;
+  }
+  .container_add img {
+    height: 60px;
+    width: 60px;
+
+  }
 .container_add {
     text-align: center;
-    margin-top: 20px;
+    padding: 20px;
 }
 
 .container_add a {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #2196F3;
+    background-color: #2ecc71;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
 }
 
 .container_add a:hover {
-    background-color: #1565C0;
+    background-color: #27ae60;
 }
 
-/* Responsive styling */
-@media screen and (max-width: 600px) {
-    .container-dev.header, .container-dev.line {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
