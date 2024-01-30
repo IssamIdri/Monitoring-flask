@@ -11,7 +11,25 @@ class iotdevice:
                 connection.close()
             except Exception as err:
                 print(err)
-                
+    
+    def update_iotdevice(self, id: int, name: str, adresse_ip: str, adresse_mac: str, longitude: float, latitude: float) -> None:
+        connection = Connection("monitoring").connection
+        cursor = connection.cursor()
+        cursor.execute('UPDATE iotdevices SET name=%s, adresse_ip=%s, adresse_mac=%s, longitude=%s ,latitude=%s WHERE id=%s', (id, name, adresse_ip, adresse_mac, longitude, latitude))
+        connection.commit()
+        cursor.close()
+        connection.close()
+
+    def delete_iotdevice(self, id:str):
+        connection = Connection("monitoring").connection
+        cursor = connection.cursor()
+        query = 'DELETE FROM iotdevices WHERE id = %s'
+        cursor.execute(query, (id,))
+        connection.commit()
+        cursor.close()
+        connection.close()
+        
+              
     def getiotdevicebyid(self,id : int) -> any:
         connection = Connection("monitoring").connection
         cursor = connection.cursor()

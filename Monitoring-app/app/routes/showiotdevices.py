@@ -8,5 +8,5 @@ def show_iot_devices() :
     if request.method == "GET" :
         device_ser : iotdevice = iotdevice()
         result_iotdata : list = device_ser.getalliotdevices()
-        print(result_iotdata)
+        
         return render_template("showiotdevices.html", devices_data = result_iotdata)
