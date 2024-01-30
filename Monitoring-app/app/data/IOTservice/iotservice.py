@@ -12,10 +12,10 @@ class iotdevice:
             except Exception as err:
                 print(err)
                 
-    def getiotdevicebyname(self,name : str) -> any:
+    def getiotdevicebyname(self,id : int) -> any:
         connection = Connection("monitoring").connection
         cursor = connection.cursor()
-        cursor.execute('SELECT * FROM iotdevices WHERE name = %s', (name))
+        cursor.execute('SELECT * FROM iotdevices WHERE id = %d', (id))
         result : any = cursor.fetchone()
         cursor.close()
         connection.close()
