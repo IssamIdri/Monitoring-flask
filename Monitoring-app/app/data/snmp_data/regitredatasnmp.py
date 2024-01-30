@@ -21,10 +21,11 @@ class LoadDataBySnmpInfo(threading.Thread) :
                 self.dev_info_service.add_device_inforamtion(
                     data_snmp["ram"], data_snmp["cpu"],data_snmp["used_disk"],data_snmp["disk"],str(device[0])
                 )
-           
+              
                 time.sleep(5)
             time.sleep(5)
 
 
 if __name__ == "__main__" :
     pass
+    

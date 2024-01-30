@@ -36,20 +36,8 @@ class DeviceService :
         except Exception as err: 
             print(err)    
             
-            '''IOTDEVICES'''    
+           
 
-    def add_iotdevice(self, name: str, adresse_ip: str, adresse_mac: str, longitude: float, latitude: float) -> None:
-        try :
-            self.device_repo.create_iotdevice(name,adresse_ip,adresse_mac,longitude,latitude)
-        except Exception as err: 
-            print(err)
     
-    def selectinfoiot(self):
-        try:
-            self.device_repo.getalliotdevices()
-        except Exception as err:
-            print(err)
-            
-            
 if __name__ == "__main__" :
     pass

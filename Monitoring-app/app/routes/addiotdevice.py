@@ -1,6 +1,6 @@
 from flask import request, render_template, redirect
 
-from app.data.services.deviceservices import DeviceService
+from app.data.IOTservice.iotservice import iotdevice
 from app import app
 
 
@@ -10,7 +10,7 @@ def addiotdevice() :
         return render_template("addiotdevice.html")
     
     else :
-        device_ser : DeviceService = DeviceService()
+        device_ser : iotdevice = iotdevice()
         device_name : str = request.form.get("name")
         device_ip : str = request.form.get("adresse_ip")
         device_mac_address : str = request.form.get("adresse_mac")
