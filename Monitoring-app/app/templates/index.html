@@ -26,8 +26,10 @@
         }).addTo(mymap);
 
         {% for device in devices_data %}
-            var marker = L.marker([{{ device.latitude }}, {{ device.longitude }}]).addTo(mymap);
-            marker.bindPopup("<b>Device ID: {{ device.id }}</b>").openPopup();
+            var longitude = {{ device[-2] }};
+            var latitude = {{ device[-1] }};
+            var marker = L.marker([latitude, longitude]).addTo(mymap);
+            marker.bindPopup("<b>Device ID: {{ device[0] }}</b>").openPopup();
         {% endfor %}
     </script>
     {% endblock %}
