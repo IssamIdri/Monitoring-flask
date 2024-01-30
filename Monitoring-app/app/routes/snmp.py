@@ -1,12 +1,12 @@
 
-from flask import request, render_template, redirect
+'''from flask import request, render_template, redirect
 
 from app.data.services.deviceservices import DeviceService
 from app import app
 from app.data.snmp_data.testsnmp import snmp_get
 
 
-'''
+
 @app.route('/snmp', methods=['GET', 'POST'])
 def snmp_page():
     if request.method == 'POST':
@@ -27,6 +27,7 @@ def snmp_page():
     else:
         # Render the SNMP form page
         return render_template('snmp.html', snmp_data=None)
+    '''
 '''
 
 
@@ -150,4 +151,4 @@ def mapping_device_info(id,target_ip):
 
     return list(zip(ram_data, cpu_data, disk_space_used, disk_size))
 
-
+'''
