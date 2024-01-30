@@ -26,45 +26,55 @@
     <!-- container device -->
     <div class="container_show_devices">
 
-        <!-- Header -->
-        <div class="container-dev header">
-            <div>ID</div>
-            <div>NAME</div>
-            <div>IP ADDRESS</div>
-            <div>MAC ADDRESS</div>
-            <div>LONGITUDE</div>
-            <div>LATITUDE</div>
-            <div>UPDATE</div>
-            <div>DELETE</div>
-            <div>STATISTIC</div>
-        </div>
-
-        <!-- lines -->
-        <div class="lines">
-            {% if devices_data %}
-                {% for item in devices_data %}
-                <div class="container-dev line">
-                    <div>{{ item[0] }}</div>
-                    <div>{{ item[1] }}</div>
-                    <div>{{ item[2] }}</div>
-                    <div>{{ item[3] }}</div>
-                    <div>{{ item[4] }}</div>
-                    <div>{{ item[5] }}</div>
-                    <div><a href={{"/showupdatedevice/" ~ item[0]|string }}>
-                            <img src="../static/svgs/update-icon-svgrepo-com.svg" alt="" srcset="">
-                        </a></div>
-                    <div><a href={{"/showdeletedevice/" ~ item[0]|string }}>
-                            <img src="../static/svgs/delete-svgrepo-com.svg" alt="" srcset="">
-                        </a></div>
-                    <div><a href={{"/graphedevice/" ~ item[0]|string }}>
-                            <img src="../static/svgs/graph-svgrepo-com(1).svg" alt="" srcset="">
-                        </a></div>
-                </div>
-                {% endfor %}
-            {% else %}
-            <p>No data available.</p>
-        {% endif %}
-        </div>
+        <!-- Table -->
+        <table class="iot-devices-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>IP ADDRESS</th>
+                    <th>MAC ADDRESS</th>
+                    <th>LONGITUDE</th>
+                    <th>LATITUDE</th>
+                    <th>UPDATE</th>
+                    <th>DELETE</th>
+                    <th>STATISTIC</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if devices_data %}
+                    {% for item in devices_data %}
+                        <tr>
+                            <td>{{ item[0] }}</td>
+                            <td>{{ item[1] }}</td>
+                            <td>{{ item[2] }}</td>
+                            <td>{{ item[3] }}</td>
+                            <td>{{ item[4] }}</td>
+                            <td>{{ item[5] }}</td>
+                            <td>
+                                <a href={{"/showupdatedevice/" ~ item[0]|string }}>
+                                    <img src="../static/svgs/update-icon-svgrepo-com.svg" alt="">
+                                </a>
+                            </td>
+                            <td>
+                                <a href={{"/showdeletedevice/" ~ item[0]|string }}>
+                                    <img src="../static/svgs/delete-svgrepo-com.svg" alt="">
+                                </a>
+                            </td>
+                            <td>
+                                <a href={{"/graphedevice/" ~ item[0]|string }}>
+                                    <img src="../static/svgs/graph-svgrepo-com(1).svg" alt="">
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="9">No data available.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
 
         <!-- Button add -->
         <div class="container_add">
@@ -74,8 +84,6 @@
                 </a>
             </div>
         </div>
-        
-
     </div>
     {% endblock %}
 

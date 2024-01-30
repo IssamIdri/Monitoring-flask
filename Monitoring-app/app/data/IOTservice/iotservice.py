@@ -41,12 +41,7 @@ class iotdevice:
         except Exception as err: 
             print(err)
     
-    def selectinfoiot(self):
-        try:
-            self.getalliotdevices()
-        except Exception as err:
-            print(err)
-            
+    
             
     if __name__ == "__main__" :
      pass
