@@ -5,7 +5,7 @@ class iotdevice:
             try:
                 connection=Connection("monitoring").connection
                 cursor =connection.cursor()
-                cursor.execute('INSERT INTO iotdevices (name,adresse_ip,adresse_mac,longitude,latitude) VALUES (%s,%s,%s,%f,%f)', (name,adresse_ip,adresse_mac,longitude,latitude))
+                cursor.execute('INSERT INTO iotdevices (name,adresse_ip,adresse_mac,longitude,latitude) VALUES (%s,%s,%s,%s,%s)', (name,adresse_ip,adresse_mac,longitude,latitude))
                 connection.commit()
                 cursor.close()
                 connection.close()
@@ -22,13 +22,18 @@ class iotdevice:
         return result
     
     def getalliotdevices(self) -> list:
-        connection = Connection("monitoring").connection
-        cursor = connection.cursor()
-        cursor.execute('SELECT * FROM iotdevices')
-        result : list = cursor.fetchall()
-        cursor.close()
-        connection.close()
-        return result
+        try:
+            connection = Connection("monitoring").connection
+            cursor = connection.cursor()
+            cursor.execute('SELECT * FROM iotdevices')
+            result : list = cursor.fetchall()
+            return result
+        except Exception as e:
+            print(f"Error fetching data from database: {e}")
+        finally:
+            cursor.close()
+            connection.close()
+    
     
     def add_iotdevice(self, name: str, adresse_ip: str, adresse_mac: str, longitude: float, latitude: float) -> None:
         try :
