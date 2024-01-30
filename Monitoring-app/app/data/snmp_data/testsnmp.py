@@ -1,4 +1,4 @@
-from pysnmp.hlapi import *
+'''from pysnmp.hlapi import *
 import os
 import subprocess
 # Function to perform an SNMP GET request
@@ -26,7 +26,8 @@ def snmp_get(oid, target, community='public', port=161):
 
     print('SNMP GET function has been created.')
 
-    ''' # Construct the snmpwalk command
+    '''
+'''# Construct the snmpwalk command
     snmpwalk_command = f"snmpwalk -v2c -c {community} {target} {oid}"
 
     try:
