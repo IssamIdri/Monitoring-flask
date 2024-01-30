@@ -19,20 +19,16 @@
     <div id="map" style="height: 500px;"></div>
 
     <script>
-        // Initialiser la carte centrée sur le Maroc
         var mymap = L.map('map').setView([31.7917, -7.0926], 6);
 
-        // Ajouter une couche de tuiles (par exemple, OpenStreetMap)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(mymap);
 
-        // Ajouter un marqueur à la position spécifiée
-        var marker = L.marker([31.7917, -7.0926]).addTo(mymap);
-        var paris=L.marker([48.866667,2.333333]).addTo(mymap);
-
-        // Vous pouvez personnaliser le marqueur en ajoutant une pop-up
-        marker.bindPopup("<b>Emplacement du Marqueur</b>").openPopup();
+        {% for device in devices_data %}
+            var marker = L.marker([{{ device.latitude }}, {{ device.longitude }}]).addTo(mymap);
+            marker.bindPopup("<b>Device ID: {{ device.id }}</b>").openPopup();
+        {% endfor %}
     </script>
     {% endblock %}
 </body>
