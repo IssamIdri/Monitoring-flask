@@ -33,8 +33,8 @@ class TemperatureReceiver:
             payload = message.payload.decode()
             try:
                 data = json.loads(payload)
-                device_id = data.get("idd")
-                temperature = data.get("temp")
+                device_id = data.get("id_device")
+                temperature = data.get("temperature")
                 self.handle_temperature(device_id, temperature)
                 print(f"Received MQTT Message: Device ID: {device_id}, Temperature: {temperature}")
             except json.JSONDecodeError as e:
