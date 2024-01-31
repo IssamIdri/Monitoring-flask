@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import io
 import base64
 from datetime import datetime, timedelta
+from threading import Thread
 from app import app
 
 @app.route('/meteo', methods=['GET', 'POST'])
@@ -17,8 +18,19 @@ def meteo():
         latitude, longitude = get_lat_lon(city)
         temperature = get_temperature(city)
         img_data = getImageData(latitude, longitude)
+        #thread = Thread(target=getImageDataAsync, args=(latitude, longitude))
+        #thread.start()
         return render_template('meteo.html', city=city, img_data=img_data,temperature=temperature)
     return render_template('meteo.html')
+
+'''def getImageDataAsync(latitude, longitude):
+    try:
+        img_data = getImageData(latitude, longitude)
+        if img_data:
+            with app.app_context():
+                render_template('meteo.html', city=request.form['city'], img_data=img_data)
+    except Exception as e:
+        print(f"Error in getImageDataAsync: {e}")'''
 
 def get_temperature(city):
     base_url = "http://api.openweathermap.org/data/2.5/weather"
