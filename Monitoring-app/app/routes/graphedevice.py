@@ -19,10 +19,10 @@ def mapping_device_info(id : str) -> list:
     device_info : list = devi_info_service.select_device_by_id_device(id)
     device_info = device_info[-30:]
 
-    ram_data = [(bytes_to_gb(item[1]) + random.uniform(1, 10)) for item in device_info]
+    ram_data = [(bytes_to_gb(item[1]) ) for item in device_info]
     cpu_data = [item[2] for item in device_info]
-    disk_space_used = [bytes_to_gb(item[3]) + random.uniform(1, 50) for item in device_info]
-    disk_size = [bytes_to_gb(item[5]) + random.uniform(1, 100) for item in device_info]
+    disk_space_used = [bytes_to_gb(item[3])  for item in device_info]
+    disk_size = [bytes_to_gb(item[5])  for item in device_info]
 
     return list(zip( ram_data, cpu_data, disk_space_used,disk_size))
 

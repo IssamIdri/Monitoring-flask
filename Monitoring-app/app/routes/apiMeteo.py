@@ -9,6 +9,9 @@ import io
 import base64
 from datetime import datetime, timedelta
 from app import app
+import matplotlib
+matplotlib.use('Agg')  # Set the backend to 'Agg'
+
 
 @app.route('/meteo', methods=['GET', 'POST'])
 def meteo():
