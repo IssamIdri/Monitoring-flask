@@ -50,6 +50,11 @@ button:hover {
 }
 
 p {
-    margin-top: 20px;
+    margin: 50px;
+    margin-top: 50px;
     font-size: 18px;
+}
+
+.meteo{
+    margin-top: 50px;
 }
