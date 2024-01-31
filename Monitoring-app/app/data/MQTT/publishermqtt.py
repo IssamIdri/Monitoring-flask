@@ -8,7 +8,7 @@ topic = "iot/esisa/test"
 
 
 
-device_id = "1"
+device_id = "2"
 temperature = round(random.uniform(20.0, 30.0), 2)
 
 
