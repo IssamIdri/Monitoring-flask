@@ -25,8 +25,13 @@ class TemperatureReceiver:
         else:
             print(f'Failed to connect to MQTT broker with code {rc}')
 
+<<<<<<< HEAD
     def handle_temperature(self, temperature, id_device):
         self.iot_device.add_iotdevice_inforamtion(temperature, id_device)
+=======
+    def handle_temperature(self, id, temp):
+        self.iot_device.add_iotdevice_inforamtion(temp, id)
+>>>>>>> 2188732ba70f06be063050c621de5ba2ed5d21d3
 
     def on_message(self, client, userdata, message):
         if message.topic == self.custom_topic:
