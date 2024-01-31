@@ -1,5 +1,6 @@
 from app.data.snmp_data.regitredatasnmp import LoadDataBySnmpInfo
 from app.data.MQTT.brokermqtt import TemperatureReceiver
+from app.data.MQTT.publishermqtt import message
 from config import DEBUG, HOST
 from app import app
 
