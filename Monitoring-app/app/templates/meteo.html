@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="../static/styles/meteo.css">
 </head>
 <body>
+    {% extends 'header.html' %}
+    {% block title %}Monitoring{% endblock %}
+
+    {% block content %}
     <h1>City Temperature</h1>
     <form method="post">
         <label for="city">Enter City:</label>
@@ -17,5 +21,6 @@
         <p>Temperature in {{ city }} is: {{ temperature }} °C</p>
         
     {% endif %}
+    {%endblock%}
 </body>
 </html>
