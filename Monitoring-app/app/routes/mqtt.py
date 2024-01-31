@@ -7,8 +7,6 @@ import mpld3
 import matplotlib.pyplot as plt
 from app.data.MQTT.MQTTdb import IOTDevice
 from app.data.MQTT.MQTTdb import db
-
-
 import json
 from datetime import datetime
 from app import app

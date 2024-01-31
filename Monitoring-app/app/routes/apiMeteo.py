@@ -102,12 +102,12 @@ def predict_temperature(X_train, y_train, X_test):
     try:
         model = LinearRegression()
 
-        X_train_numeric = (X_train - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s')
+        X_train_numeric = (X_train - pd.Timestamp("2024-01-01")) // pd.Timedelta('1s')
         X_train_numeric = X_train_numeric.values.reshape(-1, 1)
 
         model.fit(X_train_numeric, y_train)
 
-        X_test_numeric = (X_test - pd.Timestamp("1970-01-01")) // pd.Timedelta('1s')
+        X_test_numeric = (X_test - pd.Timestamp("2024-01-01")) // pd.Timedelta('1s')
         X_test_numeric = X_test_numeric.values.reshape(-1, 1)
 
         predictions = model.predict(X_test_numeric)
