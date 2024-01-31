@@ -60,18 +60,18 @@ class iotdevice:
             print(err)
             
     
-    def insert_iotdevice_info(self, temp : str) -> None:
+    def insert_iotdevice_info(self, temperature : str,device_id: int) -> None:
         connection = Connection("monitoring").connection
         cursor = connection.cursor()
         cursor.execute(
-            '''INSERT INTO iot_device_infos (id,temp)
-            VALUES (%s, %s)''', (id,temp))
+            '''INSERT INTO iot_device_infos (temperature,id_device)
+            VALUES (%s, %s)''', (temperature,device_id))
         connection.commit()
         cursor.close()
         connection.close()
         
-    def add_iotdevice_inforamtion(self,id: int, temp : str) ->None:
-        self.insert_iotdevice_info(id,temp)
+    def add_iotdevice_inforamtion(self, temperature : str,device_id : int) ->None:
+        self.insert_iotdevice_info(temperature,device_id)
     
     
     
