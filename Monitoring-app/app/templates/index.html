@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carte du Maroc</title>
-    <!-- Inclure la bibliothèque Leaflet -->
+    <!-- Include the Leaflet library -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <link rel="stylesheet" href="../static/styles/index.css">
@@ -28,9 +28,38 @@
         {% for device in devices_data %}
             var longitude = {{ device[-2] }};
             var latitude = {{ device[-1] }};
+            var deviceName = "{{ device[1] }}";
+
             var marker = L.marker([latitude, longitude]).addTo(mymap);
-            marker.bindPopup("<b>name: {{ device[1] }}</b>").openPopup();
+            
+            // Create a closure to capture the correct values for each iteration
+            (function (marker, latitude, longitude, deviceName) {
+                getTemperature(latitude, longitude, deviceName)
+                    .then(temperature => {
+                        marker.bindPopup("<b>name: " + deviceName + "</b><br>Temperature: " + temperature + " °C");
+                    })
+                    .catch(error => {
+                        console.error('Error fetching weather data:', error);
+                        marker.bindPopup("<b>name: " + deviceName + "</b><br>Error fetching weather data");
+                    });
+            })(marker, latitude, longitude, deviceName);
         {% endfor %}
+
+        async function getTemperature(latitude, longitude, deviceName) {
+            // Make an API call to get the temperature based on latitude and longitude
+            var apiKey = "a783b884be7400e47e8fa2c6c611b734";
+            var apiUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&units=metric&appid=" + apiKey;
+
+            try {
+                var response = await fetch(apiUrl);
+                var data = await response.json();
+                var temperature = data.main.temp;
+                return temperature;
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+                throw error;
+            }
+        }
     </script>
     {% endblock %}
 </body>

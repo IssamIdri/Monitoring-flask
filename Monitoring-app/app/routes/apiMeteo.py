@@ -1,10 +1,25 @@
 import requests
+from flask import Flask, render_template, request
+from app import app
 
-base_url ="http://api.openweathermap.org/data/2.5/weather?"
-api_key="df4106b5a58e3b3d39785b5b1752bb9d"
-city="New York"
+@app.route('/meteo', methods=['GET', 'POST'])
+def meteo():
+    if request.method == 'POST':
+        city = request.form['city']
+        temperature = get_temperature(city)
+        return render_template('meteo.html', city=city, temperature=temperature)
+    return render_template('meteo.html')
 
-url = base_url +"appid=" + api_key +"&q=" + city
-response = requests.get(url).json()
-print(response)
+def get_temperature(city):
+    base_url = "http://api.openweathermap.org/data/2.5/weather"
+    api_key = "a783b884be7400e47e8fa2c6c611b734"
+    params = {'q': city, 'appid': api_key, 'units': 'metric'}  # Use metric units for Celsius
+    response = requests.get(base_url, params=params).json()
+    
+    if response['cod'] == '404':
+        return 'City not found'
+    else:
+        temperature = response['main']['temp']
+        return temperature
+
 

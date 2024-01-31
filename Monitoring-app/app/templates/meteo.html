@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Temperature</title>
+    <link rel="stylesheet" href="../static/styles/meteo.css">
+</head>
+<body>
+    <h1>City Temperature</h1>
+    <form method="post">
+        <label for="city">Enter City:</label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Get Temperature</button>
+    </form>
+    {% if city %}
+        <p>Temperature in {{ city }} is: {{ temperature }} °C</p>
+        
+    {% endif %}
+</body>
+</html>
