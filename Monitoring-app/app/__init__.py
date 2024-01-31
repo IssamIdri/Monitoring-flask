@@ -23,6 +23,6 @@ from app.routes.index import index
 
 from app.routes.showiotdevices import show_iot_devices
 from app.routes.addiotdevice import addiotdevice
-
+from app.routes import apiMeteo
 
 

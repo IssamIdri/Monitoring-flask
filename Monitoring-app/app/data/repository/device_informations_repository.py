@@ -20,14 +20,7 @@ class DeviceInforamtionsRepository :
         connection.close()
         return result
     
-    def getiotdevices(self,name : str) -> list:
-        connection = Connection("monitoring").connection
-        cursor = connection.cursor()
-        cursor.execute('SELECT longitude,latitude FROM iotdevices LIKE %s',(name))
-        result : list = cursor.fetchall()
-        cursor.close()
-        connection.close()
-        return result
+    
     
     
     
