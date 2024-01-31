@@ -1,7 +1,7 @@
 import requests
 
 base_url ="http://api.openweathermap.org/data/2.5/weather?"
-api_key="a783b884be7400e47e8fa2c6c611b734"
+api_key="df4106b5a58e3b3d39785b5b1752bb9d"
 city="New York"
 
 url = base_url +"appid=" + api_key +"&q=" + city

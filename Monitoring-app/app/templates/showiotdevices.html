@@ -36,9 +36,7 @@
                     <th>MAC ADDRESS</th>
                     <th>LONGITUDE</th>
                     <th>LATITUDE</th>
-                    <th>UPDATE</th>
-                    <th>DELETE</th>
-                    <th>STATISTIC</th>
+                    <th>POSITION</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,19 +49,11 @@
                             <td>{{ item[3] }}</td>
                             <td>{{ item[4] }}</td>
                             <td>{{ item[5] }}</td>
+                            
+                    
                             <td>
-                                <a href={{"/showupdateiotdevice/" ~ item[0]|string }}>
-                                    <img src="../static/svgs/update-icon-svgrepo-com.svg" alt="">
-                                </a>
-                            </td>
-                            <td>
-                                <a href={{"/showdeleteiotdevice/" ~ item[0]|string }}>
-                                    <img src="../static/svgs/delete-svgrepo-com.svg" alt="">
-                                </a>
-                            </td>
-                            <td>
-                                <a href={{"/grapheiotdevice/" ~ item[0]|string }}>
-                                    <img src="../static/svgs/graph-svgrepo-com(1).svg" alt="">
+                                <a href="/index" alt="">
+                                    <img src="../static/images/map.png" alt="" width="10" height="10">
                                 </a>
                             </td>
                         </tr>

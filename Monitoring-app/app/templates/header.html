@@ -10,30 +10,28 @@
 </head>
 
 <body>
-    <div class="bare-container">
-        <div class="bare">
-            <a href="/index" alt="">
-            <div class="logo">
-                <div>
-                    <img src="../static/imgs/icons8-monitoring-chloe-96.png" alt="" srcset="">
-                </div>
-                <div>Monitoring Flask</div>
-            </div>
-            
-            <a href="/showdevices" alt="" class="menu_showdevices">
-                <div>Show devices</div>
-            <a href="/showiotdevices" alt="" class="menu_showdevices">
-                <div>Show IOT devices</div>
-            <a href="/showdevices" alt="" class="menu_showdevices">
-                <div>Open Metéo</div>
-            <a href="/log_out" class="out">
-                <div>
-                    <img src="../static/svgs/power-button-svgrepo-com.svg" alt="" srcset="">
-                </div>
-                <div>Log Out</div>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/index" alt="Home">
+                <img src="../static/images/monitoring.png" alt="">
+                <span>Monitoring Flask</span>
             </a>
         </div>
-    </div>
+
+        <ul class="nav-links">
+            <li><a href="/showdevices" alt="Show devices">Show devices</a></li>
+            <li><a href="/showiotdevices" alt="Show IOT devices">Show IOT devices</a></li>
+            <li><a href="/openmeteo" alt="Open Meteo">Open Meteo</a></li>
+        </ul>
+
+        <a href="/log_out" class="out">
+            <div>
+                <img src="../static/images/logout.png" alt="">
+            </div>
+            <div>Log Out</div>
+        </a>
+    </nav>
+
     {% block content %}{% endblock %}
 </body>
 

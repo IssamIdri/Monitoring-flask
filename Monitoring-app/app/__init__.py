@@ -23,8 +23,6 @@ from app.routes.index import index
 
 from app.routes.showiotdevices import show_iot_devices
 from app.routes.addiotdevice import addiotdevice
-from app.routes.updateiotdevice import update_iot_device
-from app.routes.deleteiotdevice import delete_iot_device
 
 
 
