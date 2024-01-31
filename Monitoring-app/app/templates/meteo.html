@@ -18,7 +18,8 @@
         <button type="submit">Get Temperature</button>
     </form>
     {% if city %}
-        <p>Temperature in {{ city }} is: {{ temperature }} °C</p>
+
+        <p class="meteo">Temperature in {{ city }} is: {{ temperature }} °C</p>
         
     {% endif %}
     {%endblock%}
