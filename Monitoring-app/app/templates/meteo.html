@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Temperature</title>
+    <title>Weather Forecast</title>
     <link rel="stylesheet" href="../static/styles/meteo.css">
 </head>
+
 <body>
     {% extends 'header.html' %}
-    {% block title %}Monitoring{% endblock %}
+    {% block title %}Monitoring - Flask{% endblock %}
 
     {% block content %}
-    <h1>City Temperature</h1>
-    <form method="post">
-        <label for="city">Enter City:</label>
-        <input type="text" id="city" name="city" required>
-        <button type="submit">Get Temperature</button>
-    </form>
-    {% if city %}
+    <h1>Weather Forecast</h1>
 
-        <p class="meteo">Temperature in {{ city }} is: {{ temperature }} °C</p>
-        
+    <form method="post" action="{{ url_for('meteo') }}">
+        <label for="city">Enter City:</label>
+        <input type="text" name="city" id="city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    
+    {% if city %}
+    <h2>Weather Details for {{ city }}</h2>
     {% endif %}
-    {%endblock%}
+
+    {% if city %}
+        <p>Temperature in {{ city }} is: {{ temperature }} °C</p>
+
+    {% endif %}
+
+    {% if latitude and longitude %}
+    <p>Latitude: {{ latitude }}</p>
+    <p>Longitude: {{ longitude }}</p>
+    {% endif %}
+
+    {% if img_data %}
+    <img src="data:image/png;base64,{{ img_data }}" alt="Temperature Prediction Chart">
+    {% else %}
+    <p>No weather data available.</p>
+    {% endif %}
+{% endblock %}
 </body>
+
 </html>
