@@ -58,6 +58,22 @@ class iotdevice:
             self.create_iotdevice(name,adresse_ip,adresse_mac,longitude,latitude)
         except Exception as err: 
             print(err)
+            
+    
+    def insert_iotdevice_info(self, temp : str) -> None:
+        connection = Connection("monitoring").connection
+        cursor = connection.cursor()
+        cursor.execute(
+            '''INSERT INTO iot_device_infos (id,temp)
+            VALUES (%s, %s)''', (id,temp))
+        connection.commit()
+        cursor.close()
+        connection.close()
+        
+    def add_iotdevice_inforamtion(self,id: int, temp : str) ->None:
+        self.insert_iotdevice_info(id,temp)
+    
+    
     
     
             
