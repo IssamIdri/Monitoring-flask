@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Liste Des Devices : </h1>
+    <table>
+        <tr>
+            <th>IP Address</th>
+            <th>MAC Address</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Luminosity</th>
+            <th>Date</th>
+        </tr>
+        {% for device in devices %}
+        <tr>
+            <td>{{ device.ip_address }}</td>
+            <td>{{ device.mac_address }}</td>
+            <td>{{ device.latitude }}</td>
+            <td>{{ device.longitude }}</td>
+            <td>{{ device.temperature }}</td>
+            <td>{{ device.humidity }}</td>
+            <td>{{ device.luminosity }}</td>
+            <td>{{ device.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

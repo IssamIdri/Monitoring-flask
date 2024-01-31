@@ -5,6 +5,7 @@ from config import SECRET_KEY
 # creating databases and tables
 DatabaseService()
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
@@ -23,6 +24,13 @@ from app.routes.index import index
 
 from app.routes.showiotdevices import show_iot_devices
 from app.routes.addiotdevice import addiotdevice
+
+
+
 from app.routes.apiMeteo import meteo
+
+
+
+from app.routes import mqtt
 
 
