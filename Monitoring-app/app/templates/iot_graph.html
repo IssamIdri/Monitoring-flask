@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Plotly CSS -->
+    <link rel="stylesheet" href="https://cdn.plot.ly/plotly-latest.min.css" />
+    
+    <title>temperature Over Time</title>
+</head>
+<body style="background-color: #3498db;">
+    <!-- Header -->
+    <div style="background-color: rgb(20, 20, 20);padding: 10px;border-radius: 0px 0px 20px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <a href="/dashboard"><img src="../static/imgs/logo.png" style="width: 60px;margin-left: 10px;" /></a>
+            <div style="">
+                <h1 style="color: #fff; font-size: 25px;font-weight: bold; font-family: 'Courier New', Courier, monospace; margin: 0;">Monitoring Application</h1>
+            </div>
+            <a href="/log_out" style="text-decoration: none; display: flex;margin-right: 10px; flex-wrap: wrap; flex-direction: row; align-items: center;">
+                <img src="../static/imgs/logout.png" style="width: 60px;">
+                <h3 style="color: #fff; font-size: 20px; margin-left: 5px;">LogOut</h3>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Date and time pickers -->
+        <div class="row">
+            <div class="col-md-6">
+                <label for="start-date" class="form-label">Start Date:</label>
+                <input type="date" id="start-date" name="start-date" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="start-time" class="form-label">Start Time:</label>
+                <input type="time" id="start-time" name="start-time" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <label for="end-date" class="form-label">End Date:</label>
+                <input type="date" id="end-date" name="end-date" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="end-time" class="form-label">End Time:</label>
+                <input type="time" id="end-time" name="end-time" class="form-control">
+            </div>
+        </div>
+
+        <!-- Apply Filter button -->
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <button onclick="updateChart()" class="btn btn-primary">Apply Filter</button>
+            </div>
+        </div>
+
+        <!-- Add Plotly chart container -->
+        <div id="chart-container" style="height: 400px; width: 100%;" class="mt-4"></div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Include Plotly JS -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script>
+        // Function to format time data for Plotly
+        function formatTimeData(timeStrings) {
+            return timeStrings.map(function (timeString) {
+                return new Date(timeString);
+            });
+        }
+
+        // Sample data (replace with your temperature data)
+        var temperature = {{ temperature | tojson | safe }};
+        var time_data = {{ time_data | tojson | safe }};
+        var static_percentages = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+        // Convert time_data to JavaScript Date objects (for x-axis)
+        var dateObjects = formatTimeData(time_data);
+
+        // Create Plotly chart
+        var chartContainer = document.getElementById('chart-container');
+        var chartData = [];
+
+        // Add line for temperature
+        chartData.push({
+            x: dateObjects,
+            y: temperature,
+            type: 'scatter',
+            mode: 'lines',
+            name: 'temperature'
+        });
+
+        function updateChart() {
+            var startDateString = document.getElementById('start-date').value;
+            var startTimeString = document.getElementById('start-time').value;
+            var endDateString = document.getElementById('end-date').value;
+            var endTimeString = document.getElementById('end-time').value;
+
+            var startDate = startDateString ? new Date(startDateString + ' ' + startTimeString) : null;
+            var endDate = endDateString ? new Date(endDateString + ' ' + endTimeString) : null;
+
+            // Perform filtering based on selected dates
+            var filteredTimestamps = [];
+            var filteredtemperatureData = [];
+
+            for (var i = 0; i < time_data.length; i++) {
+                var timestamp = new Date(time_data[i]);
+
+                if ((!startDate || timestamp >= startDate) && (!endDate || timestamp <= endDate)) {
+                    filteredTimestamps.push(timestamp);
+                    filteredtemperatureData.push(temperature[i]);
+                }
+            }
+
+            // Update chart with filtered data
+            Plotly.update(chartContainer, { x: [filteredTimestamps], y: [filteredtemperatureData] });
+        }
+
+        Plotly.newPlot(chartContainer, chartData, {
+            title: 'temperature Over Time',
+            xaxis: {
+                title: 'Time',
+                tickformat: "%Y-%m-%d %H:%M:%S"  // Format for year, month, day, hour, minute, second
+            },
+            yaxis: {
+                title: 'temperature',
+                tickvals: static_percentages,
+                ticktext: static_percentages.map(p => `${p}%`)
+            }
+        });
+    </script>
+</body>
+</html>

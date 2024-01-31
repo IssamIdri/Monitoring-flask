@@ -15,7 +15,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 #from app.routes.snmp import show_graph
 
 from app.routes import user_route
-from app.routes import showdevices
+from app.routes.showdevices import show_devices
 from app.routes.adddevice import adddevice
 from app.routes.updatedevice import update_device
 from app.routes.deletedevice import delete_device

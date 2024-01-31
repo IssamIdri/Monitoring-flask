@@ -1,7 +1,7 @@
 import threading
 import time
-from app.data.services.deviceservices import DeviceService
-from app.data.services.device_information_sevice import DeviceInformationsService
+from app.data.models.deviceservices import DeviceService
+from app.data.models.device_information_sevice import DeviceInformationsService
 from app.data.snmp_data.snmpservice import SnmpService
 
 class LoadDataBySnmpInfo(threading.Thread) :

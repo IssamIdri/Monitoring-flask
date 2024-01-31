@@ -1,4 +1,4 @@
-import paho.mqtt.client as mqtt
+'''import paho.mqtt.client as mqtt
 import json
 from app.data.IOTservice.iotservice import iotdevice
 
@@ -45,3 +45,4 @@ class TemperatureReceiver:
 
 if __name__ == "__main__":
     pass
+'''

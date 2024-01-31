@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect
 
-from app.data.services.deviceservices import DeviceService
+from app.data.models.deviceservices import DeviceService
 from app import app
 
 

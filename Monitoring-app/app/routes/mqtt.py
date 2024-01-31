@@ -1,138 +1,153 @@
-import requests
-from flask import *
-from flask_sqlalchemy import SQLAlchemy
-from flask_mqtt import Mqtt
-from flask_migrate import Migrate
-import mpld3
-import matplotlib.pyplot as plt
-from app.data.MQTT.MQTTdb import IOTDevice
-from app.data.MQTT.MQTTdb import db
-import json
-from datetime import datetime
+from flask import request, render_template, redirect, url_for, session
+from app.data.models.iot_device import iot_device
+from app.data.models.deviceservices import DeviceService
+
 from app import app
+from app.data.models.iot_device_informations import *
+from app.data.models.iot_device import *
+from geopy.geocoders import Nominatim
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+
+from datetime import datetime
+import paho.mqtt.client as mqtt
+
+import json
+from flask_mqtt import Mqtt
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['MQTT_BROKER_URL'] = 'test.mosquitto.org'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['MQTT_BROKER_PORT'] = 1883
-app.config['MQTT_KEEPALIVE'] = 2  
-app.config['MQTT_TLS_ENABLED'] = False
-app.config['OPENWEATHERMAP_API_KEY'] = 'df4106b5a58e3b3d39785b5b1752bb9d'
+app.config['MQTT_BROKER_PORT'] =1883
+MQTT_TOPIC = 'iot/esisa'
 
-db.init_app(app)
 mqtt = Mqtt(app)
-migrate = Migrate(app, db)
 
 @mqtt.on_connect()
-def handle_connect(client, userdata, flags, rc) :
-    mqtt.subscribe('iot/projetesisa')
-
+def hand_connect(client, userData, flags, rc):
+        #je suis connecte
+        global connected
+        connected = False
+        if connected:
+            return
+        if rc==0:
+            print('Connection ')
+            mqtt.subscribe(MQTT_TOPIC)
+            connected = True
+        else:
+            print('Connection refused')
+            
 @mqtt.on_message()
-def handle_message(client, userdata, message) :
-    topic = message.topic
-    payload = message.payload.decode()
-
-    # Analyser le message et extraire les données
-    data = json.loads(payload)
-    temperature = data.get('temperature')
-    humidity = data.get('humidity')
-    luminosity = data.get('luminosity')
-
-    # Mettre à jour la base de données
-    device = IOTDevice(ip_address=topic, temperature=temperature, humidity=humidity, luminosity=luminosity)
-    db.session.add(device)
-    db.session.commit()
-
-@app.route('/homemqtt', methods=['GET', 'POST'])
-def homemqtt() :
-    if request.method == 'POST' :
-        ip_address = request.form['ip_address']
-        mac_address = request.form['mac_address']
-        latitude = request.form['latitude']
-        longitude = request.form['longitude']
+def handle_message(client, userdata, message):
         
-        # Convertir la chaîne de date en objet datetime
-        date = datetime.strptime(request.form['date'], '%Y-%m-%d').date()
+        if message.topic == MQTT_TOPIC:
+            try:
+                payload = json.loads(message.payload.decode())
+                temperature = float(payload.get('temperature'))
+                timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                
+                #print(f'Temperature: {temperature}, Timestamp: {timestamp}')
+                # Uncomment the following lines when you're ready to test the database insertion
+                try :
 
-        # Récupérer les données météorologiques de l'API OpenWeatherMap
-        weather_data = get_weather_data(latitude, longitude, date)
+                   
+                        iot_devi_info_service: iot_DeviceInformationsService = iot_DeviceInformationsService()
+                        iot_devi_info_service.add_iot_device_inforamtion(temperature,1,timestamp)
+                    
+                        mqtt._disconnect()
+                        #mqtt_data = MQTTData(id=None,client_id=iotdevice_id, temperature=temperature, timestamp=timestamp)
+                #MQTTDataDao.insertMQTTData(mqtt_data)
+                except Exception as e :
+                    print(f"Error processing message: {e}")
+                
 
-        # Enregistrer les données dans la base de données
-        new_device = IOTDevice(
-            ip_address=ip_address,
-            mac_address=mac_address,
-            latitude=latitude,
-            longitude=longitude,
-            temperature=weather_data['temperature'],
-            humidity=weather_data['humidity'],
-            luminosity=weather_data['luminosity'],
-            date=date
-        )
-        db.session.add(new_device)
-        db.session.commit()
 
-    devices = IOTDevice.query.all()
-    return render_template('homemqtt.html', devices=devices)
+                print(f'Temperature: {temperature}, Timestamp: {timestamp}')
+            
+            except Exception as e:
+                print(f"Error processing message: {e}")
+        else:
+            print(f"Received message does not match expected topic: {MQTT_TOPIC}")
+            
+print("End of script")
 
-@app.route('/listiotdevices')
-def devices() :
-    devices = IOTDevice.query.all()
-    return render_template('listiotdevices.html', devices=devices)
+@app.route("/show_graphe_iot_device/<id>")
+def show_iot_device_info(id: str):
+    devi_info_service: iot_DeviceInformationsService = iot_DeviceInformationsService()
+    
+    # Assuming select_device_info_by_device_id is a method in your service
+    device_info: list = devi_info_service.select_iot_device_by_id_device(id)
+    
+    temperature = [item[1] for item in device_info]
+    time = [item[3] for item in device_info]
 
-@app.route('/grapheiotdevice', methods=['POST'])
-def plot():
-    mac_address = request.form['mac_address']
+    return render_template('iot_graph.html', temperature=temperature, time_data=time)
 
-    # Récupérer les données de la base de données en fonction de l'adresse MAC
-    data = IOTDevice.query.filter_by(mac_address=mac_address).all()
 
-    # Créer les listes pour les données
-    temperatures = []
-    humidity = []
-    luminosity = []
-    days = []
+def train_random_forest_model(data):
+    data['timestamp'] = data['date'].astype(np.int64) // 10**9  # Extract timestamp in seconds
+    data['hour'] = pd.to_datetime(data['date']).dt.hour
+    data['day_of_week'] = pd.to_datetime(data['date']).dt.dayofweek
+    data['month'] = pd.to_datetime(data['date']).dt.month
 
-    # Collecter les données par jour
-    for entry in data:
-        temperatures.append(entry.temperature)
-        humidity.append(entry.humidity)
-        luminosity.append(entry.luminosity)
-        days.append(entry.date.strftime('%d-%m-%Y'))  # Formatage de la date
+    X = data[['timestamp', 'hour', 'day_of_week', 'month']]
+    y = data['precipitation']
 
-    # Créer le graphique avec Matplotlib
-    plt.figure(figsize=(12, 8))  # Taille du graphique
-    plt.xlabel('Jours')
-    plt.ylabel('Données')
-    plt.title('Données météorologiques par jour')
+    # Split the data into training, validation, and test sets
+    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=42)
+    X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
 
-    # Affichage de la température
-    plt.plot(days, temperatures, color='tab:red', label='Temperature')
+    model = RandomForestRegressor(n_estimators=100, random_state=42)
+    model.fit(X_train, y_train)
 
-    # Affichage de l'humidité
-    plt.plot(days, humidity, color='tab:blue', label='Humidité')
+    # Evaluate on the validation set
+    val_predictions = model.predict(X_val)
+    val_mse = mean_squared_error(y_val, val_predictions)
+    
+    # Example of predicting precipitation for the next 7 days
+    future_timestamps = pd.date_range(start=pd.Timestamp.now(), periods=7, freq='D')
+    future_data = {
+        'timestamp': future_timestamps.astype(np.int64) // 10**9,
+        'hour': future_timestamps.hour,
+        'day_of_week': future_timestamps.dayofweek,
+        'month': future_timestamps.month
+    }
+    future_X = pd.DataFrame(data=future_data)
+    predictions = model.predict(future_X)
 
-    # Affichage de la luminosité
-    plt.plot(days, luminosity, color='tab:green', label='Luminosité')
+    # Evaluate on the test set
+    test_predictions = model.predict(X_test)
+    test_mse = mean_squared_error(y_test, test_predictions)
+  
 
-    plt.legend(loc='best')
-    plt.xticks(rotation=45, ha='right')  # Rotation des étiquettes des jours
-    plt.tight_layout()
+    return model, future_timestamps, predictions
 
-    # Convertir le graphique en HTML
-    html_graph = mpld3.fig_to_html(plt.gcf())
+def generate_prediction_graph(dates, predictions):
+    plt.figure(figsize=(10, 5))
+    plt.plot(dates, predictions, marker='o', linestyle='-', color='b')
+    plt.title('7-Day Precipitation Predictions')
+    plt.xlabel('Date')
+    plt.ylabel('Predicted Probability')
+    plt.grid(True)
 
-    return render_template('grapheiotdevice.html', graph=html_graph)
+    # Specify the path where you want to save the graph
+    graph_path = "C:/Users/msià/Desktop/python/Monitoring_app/app/static/imgs/prediction_graph.png"  # Change this to your desired path
 
-def get_weather_data(latitude, longitude, date):
-    api_key = app.config['OPENWEATHERMAP_API_KEY']
-    url = f'http://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={api_key}&units=metric'
-    response = requests.get(url)
-    data = response.json()
+    plt.savefig(graph_path)
+    plt.close()
 
-    temperature = data['main']['temp']
-    humidity = data['main']['humidity']
-    luminosity = data['clouds']['all']  # Using cloudiness as an example for luminosity
+    return graph_path
 
-    return {'temperature': temperature, 'humidity': humidity, 'luminosity': luminosity}
+def get_lat_long(city):
+    geolocator = Nominatim(user_agent="geo_locator")
+    location = geolocator.geocode(city)
 
+    if location:
+        return location.latitude, location.longitude
+    else:
+        return None

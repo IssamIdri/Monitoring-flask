@@ -1,4 +1,4 @@
-import paho.mqtt.publish as publish
+'''import paho.mqtt.publish as publish
 import time
 import random
 
@@ -22,4 +22,4 @@ print(f"Published: {message}")
 
 
 if __name__ == "__main__" :
-    pass
+    pass'''

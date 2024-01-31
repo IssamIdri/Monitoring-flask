@@ -54,11 +54,32 @@ class DatabaseService:
                 disk_size float
             )
         ''')
-
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS iotdevices (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(255) NOT NULL,
+                adresse_ip VARCHAR(50) NOT NULL,
+                adresse_mac VARCHAR(50) NOT NULL,
+                longitude VARCHAR(50) NOT NULL,
+                latitude VARCHAR(50) NOT NULL
+            )
+        ''')
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS iot_information (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                temperature double,
+                iot_id int,
+                FOREIGN KEY (iot_id) REFERENCES iotdevices(id),
+                time timestamp
+            )
+        ''')
+        
         cursor.close()
 
     def hash_password(self, password: str) -> str:
-        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        hashed_password = password
         return hashed_password
 
     def insert_user(self, username: str, password: str) -> None:

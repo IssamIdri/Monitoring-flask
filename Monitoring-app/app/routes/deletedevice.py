@@ -1,7 +1,7 @@
 from flask import render_template, redirect
 
-from app.data.services.deviceservices import DeviceService
-from app.data.services.device_information_sevice import DeviceInformationsService
+from app.data.models.deviceservices import DeviceService
+from app.data.models.device_information_sevice import DeviceInformationsService
 
 from app import app
 
