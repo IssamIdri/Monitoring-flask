@@ -25,17 +25,17 @@ class TemperatureReceiver:
         else:
             print(f'Failed to connect to MQTT broker with code {rc}')
 
-    def handle_temperature(self, id, temp):
-        self.iot_device.add_iotdevice_inforamtion(Mac=id, temperature_values=temp)
+    def handle_temperature(self, temperature, id_device):
+        self.iot_device.add_iotdevice_inforamtion(temperature, id_device)
 
     def on_message(self, client, userdata, message):
         if message.topic == self.custom_topic:
             payload = message.payload.decode()
             try:
                 data = json.loads(payload)
-                id_device = data.get("id_device")
                 temperature = data.get("temperature")
-                self.handle_temperature(id_device, temperature)
+                id_device = data.get("id_device")
+                self.handle_temperature(temperature, id_device)
                 print(f"Received MQTT Message: Device ID: {id_device}, Temperature: {temperature}")
             except json.JSONDecodeError as e:
                 print(f"Error decoding JSON payload: {e}")
