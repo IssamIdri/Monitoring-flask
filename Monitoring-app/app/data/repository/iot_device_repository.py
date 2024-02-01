@@ -20,6 +20,15 @@ class iotDeviceRepository :
         cursor.close()
         connection.close()
         return result
+    
+    def get_id_devices(self)->list:
+        connection = Connection("monitoring").connection
+        cursor = connection.cursor()
+        cursor.execute('SELECT id FROM iotdevices ')
+        result : list = cursor.fetchall()
+        cursor.close()
+        connection.close()
+        return result
 
     def get_all_iot_devices(self) -> list:
         connection = Connection("monitoring").connection

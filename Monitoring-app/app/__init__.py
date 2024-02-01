@@ -31,6 +31,6 @@ from app.routes.addiotdevice import addiotdevice
 from app.routes.apiMeteo import meteo
 
 
-
-from app.routes import mqtt
+from app.routes.iotgraphe import show_iot_device_info
+#from app.routes import mqtt
 

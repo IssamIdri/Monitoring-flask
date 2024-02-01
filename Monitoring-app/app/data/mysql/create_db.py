@@ -79,7 +79,7 @@ class DatabaseService:
         cursor.close()
 
     def hash_password(self, password: str) -> str:
-        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        hashed_password = password
         return hashed_password
 
     def insert_user(self, username: str, password: str) -> None:

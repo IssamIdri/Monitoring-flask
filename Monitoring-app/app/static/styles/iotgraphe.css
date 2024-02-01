@@ -1,0 +1,97 @@
+/* Variables */
+:root {
+    --primary-color: #3498db;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+    --box-shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Body Styles */
+body {
+    font-family: "Arial", sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Title Container Styles */
+.title-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Title Styles */
+.title img {
+    height: 60px;
+    width: 60px;
+}
+
+.title div {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: var(--text-color);
+}
+
+/* Container for Graph and Info Styles */
+.container-graphe-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Form Container (Login Box) Styles */
+.login-box {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Individual Box Styles */
+.box {
+    margin-bottom: 15px;
+}
+
+/* Box Labels and Content Styles */
+.box > div:first-child {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.box > div:last-child {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Footer Styles */
+.footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Back Button Styles */
+.footer a {
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+}
+
+/* Optional Back Button Icon Styles */
+.footer img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}

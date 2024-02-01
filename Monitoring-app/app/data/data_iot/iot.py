@@ -23,11 +23,11 @@ client.loop_start()
 
 try:
     while True:
-        temperature = round(random.uniform(1, 42), 2)
+        temperature = round(random.uniform(10, 42), 6)
         payload = {'temperature': temperature}
         client.publish(MQTT_TOPIC, json.dumps(payload))
         print('Temperature:', temperature)
-        time.sleep(3)
+        time.sleep(10)
 except Exception as e:
     print('error', e)
     client.disconnect()

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.plot.ly/plotly-latest.min.css" />
+    <link rel="stylesheet" href="../static/styles/iotgraphe.css">
+    <title>Temperature Over Time</title>
+</head>
+<body style="background-color: #808080;"> <!-- Set background color to grey (#808080) -->
+    {% extends 'header.html' %}
+    {% block title %}Monitoring{% endblock %}
+
+    {% block content %}
+    <div class="container mt-4">
+        <!-- Add Plotly chart container -->
+        <div id="chart-container" style="height: 400px; width: 100%;" class="mt-4"></div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Include Plotly JS -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script>
+        function formatTimeData(timeStrings) {
+            return timeStrings.map(function (timeString) {
+                return new Date(timeString);
+            });
+        }
+
+        var temperature = {{ temperature | tojson | safe }};
+        var time_data = {{ time_data | tojson | safe }};
+        var static_percentages = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+        var dateObjects = formatTimeData(time_data);
+
+        var chartContainer = document.getElementById('chart-container');
+        var chartData = [];
+
+        chartData.push({
+            x: dateObjects,
+            y: temperature,
+            type: 'scatter',
+            mode: 'lines',
+            name: 'temperature'
+        });
+
+        function updateChart() {
+            // Your updateChart function remains unchanged
+        }
+
+        Plotly.newPlot(chartContainer, chartData, {
+            title: 'Temperature Over Time',
+            xaxis: {
+                title: 'Time',
+                tickformat: "%Y-%m-%d %H:%M:%S"
+            },
+            yaxis: {
+                title: 'Temperature',
+                tickvals: static_percentages,
+                ticktext: static_percentages.map(p => `${p}%`)
+            }
+        });
+    </script>
+
+    <div class="login-box">
+        <form action="/addiotdevice" method="post">
+
+            <div class="box">
+                <div>
+                    Name :
+                </div>
+                <div>
+                    {{device_info[1]}}
+                </div>
+            </div>
+
+            <div class="box">
+                <div>
+                    @ IP :
+                </div>
+                <div>
+                    {{device_info[1]}}
+                </div>
+            </div>
+
+            <div class="box">
+                <div>
+                    @ MAC :
+                </div>
+                <div>
+                    {{device_info[2]}}
+                </div>
+            </div>
+
+            <div class="box">
+                <div>
+                    LONGITUDE :
+                </div>
+                <div>
+                    {{device_info[3]}}
+                </div>
+            </div>
+
+            <div class="box">
+                <div>
+                    LATITUDE :
+                </div>
+                <div>
+                    {{device_info[4]}}
+                </div>
+            </div>
+
+            <div class="footer">
+                <a href="/showiotdevices">
+                    <div>
+                        <img src="../static/svgs/back-svgrepo-com(1).svg" alt="" srcset="">
+                    </div>
+                </a>
+            </div>
+    {%endblock%}
+</body>
+</html>
