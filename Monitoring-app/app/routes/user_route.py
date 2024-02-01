@@ -15,9 +15,10 @@ def user_authentication() -> str:
         db_service = DatabaseService()
         username = request.form.get("username")
         password = request.form.get("password")
+        print(f"Username rrrr: {username}, Password: {password}")
 
         user_data = db_service.get_user_by_username_password(username, password)
-
+        print(user_data)
         if user_data:
             print(user_data)
             # Store user_id in session

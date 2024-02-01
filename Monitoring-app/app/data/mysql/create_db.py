@@ -79,12 +79,11 @@ class DatabaseService:
         cursor.close()
 
     def hash_password(self, password: str) -> str:
-        hashed_password = password
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
         return hashed_password
 
     def insert_user(self, username: str, password: str) -> None:
         hashed_password = self.hash_password(password)
-
         cursor = self.db_service.cursor()
         cursor.execute("INSERT INTO users (username, passwd) VALUES (%s, %s)", (username, hashed_password))
         self.db_service.commit()
@@ -92,7 +91,6 @@ class DatabaseService:
 
     def get_user_by_username_password(self, username: str, password: str) -> any:
         hashed_password = self.hash_password(password)
-
         cursor = self.db_service.cursor()
         cursor.execute("SELECT * FROM users WHERE username = %s AND passwd = %s", (username, hashed_password))
         user_data = cursor.fetchone()
