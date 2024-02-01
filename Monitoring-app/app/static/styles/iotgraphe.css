@@ -1,14 +1,14 @@
 /* Variables */
 :root {
-    --primary-color: #3498db;
-    --background-color: #f4f4f4;
-    --text-color: #333;
-    --box-shadow-color: rgba(0, 0, 0, 0.1);
+    --primary-color: #2ecc71;
+    --background-color: #ecf0f1;
+    --text-color: #2c3e50;
+    --box-shadow-color: rgba(0, 0, 0, 0.2);
 }
 
 /* Body Styles */
 body {
-    font-family: "Arial", sans-serif;
+    font-family: "Helvetica", sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     margin: 0;
@@ -30,12 +30,12 @@ header {
 
 /* Title Styles */
 .title img {
-    height: 60px;
-    width: 60px;
+    height: 80px;
+    width: 80px;
 }
 
 .title div {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     margin-top: 10px;
     color: var(--text-color);
@@ -51,42 +51,55 @@ header {
 
 /* Form Container (Login Box) Styles */
 .login-box {
-    background-color: #f4f4f4;
+    background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px var(--box-shadow-color);
+    max-width: 500px;
     width: 100%;
 }
 
 /* Individual Box Styles */
 .box {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 /* Box Labels and Content Styles */
 .box > div:first-child {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .box > div:last-child {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px;
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
 }
 
 /* Footer Styles */
 .footer {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px; /* Reduce the margin */
+}
+
+.minimized-footer {
+    padding: 5px; /* Adjust the padding for a smaller size */
 }
 
 /* Back Button Styles */
 .footer a {
     text-decoration: none;
-    color: #333;
+    color: var(--text-color);
     display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.footer a:hover {
+    background-color: var(--primary-color);
+    color: #fff;
 }
 
 /* Optional Back Button Icon Styles */

@@ -32,9 +32,9 @@ class DeviceService :
     def add_device(self, device_name: str, device_ip: str, device_mac_address: str, type: str) -> None:
         try:
             # Check SNMP availability before adding to the database
-            if not self.snmp_check(device_ip):
+            '''if not self.snmp_check(device_ip):
                 print(f"SNMP check failed for {device_ip}. Device not added to the database.")
-                return
+                return'''
 
             # SNMP check successful, proceed to add device to the database
             self.device_repo.create_device(device_name, device_ip, device_mac_address, type)
