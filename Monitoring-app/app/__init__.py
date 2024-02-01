@@ -34,4 +34,3 @@ from app.routes.apiMeteo import meteo
 
 from app.routes import mqtt
 
-
