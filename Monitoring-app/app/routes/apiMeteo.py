@@ -80,6 +80,7 @@ def getImageData(latitude, longitude):
             X_train, X_test, y_train, y_test = train_test_split(df_interval.index, df_interval['temperature_2m'], test_size=0.2, random_state=42)
 
             predictions = predict_temperature(X_train, y_train, X_test)
+
             
             return visualize_data(df_interval.index, y_test, predictions)
     except:
@@ -100,20 +101,22 @@ def get_weather_data(api_url):
 
 def predict_temperature(X_train, y_train, X_test):
     try:
-        model = LinearRegression()
-
-        X_train_numeric = (X_train - pd.Timestamp("2024-01-01")) // pd.Timedelta('1s')
+        # Feature Engineering: Extracting numeric features from timestamps
+        X_train_numeric = pd.to_numeric(X_train)
         X_train_numeric = X_train_numeric.values.reshape(-1, 1)
 
+        model = LinearRegression()
         model.fit(X_train_numeric, y_train)
 
-        X_test_numeric = (X_test - pd.Timestamp("2024-01-01")) // pd.Timedelta('1s')
+        X_test_numeric = pd.to_numeric(X_test)
         X_test_numeric = X_test_numeric.values.reshape(-1, 1)
 
         predictions = model.predict(X_test_numeric)
         return predictions
-    except : 
-        pass
+
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return None
 
 def visualize_data(dates, actual_temperature, predicted_temperature):
     try:

@@ -80,6 +80,7 @@ class DatabaseService:
 
     def hash_password(self, password: str) -> str:
         hashed_password = password
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
         return hashed_password
 
     def insert_user(self, username: str, password: str) -> None:
